@@ -31,6 +31,16 @@ h3 {
 img {
   width: 100%;
   height: auto;
+  transition: all 300ms;
+  display: block;
+}
+
+img:not(.main-image):hover {
+  scale: 1.05;
+}
+
+.main-image {
+  transition: none; 
 }
 
 /* classes utlilitárias  */
@@ -43,13 +53,14 @@ img {
   max-width: calc(24rem + 1.25rem);
   margin-inline: auto;
 }
+
 /* header */
 header {
   background: var(--brand-primary);
   padding: 0.8rem 1.75rem;
 }
 
-header .nav {
+header .container {
   max-width: 23.375rem;
   margin-inline: auto;
 
@@ -88,12 +99,15 @@ header form input::placeholder {
 
 /* main */
 
-main h1 {
+.header-content {
+  display: block;
   margin-top: 1rem;
+  
 }
 
 main button {
   margin-top: .5rem;
+  
 }
 
 button {
@@ -146,3 +160,97 @@ footer {
   margin-top: 2.5rem;
 }
 
+
+@media (width > 55rem) {
+  img {
+    border-radius: 5px;
+  }
+
+  #app {
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "main aside"
+    "footer footer";
+
+    gap: 2.5rem 2rem;
+  }
+
+  header .container,
+  .container {
+    max-width: initial;
+    margin: initial;
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  header .container {
+    max-width: 76rem;
+    margin-inline: auto;
+  }
+
+  header form {
+    flex: 1;
+  }
+
+  header form input {
+    width: 100%;
+  }
+
+  main {
+    grid-area: main;
+  }
+
+  main .container {
+    max-width: 50rem;
+    margin-left: auto;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-content button {
+    justify-content: center;
+    align-items: center;
+  }
+
+  aside {
+    grid-area: aside;
+  }
+
+  aside.container {
+    max-width: 24rem;
+  }
+
+  footer {
+    grid-area: footer;
+  }
+}
+
+header {
+  animation: fromTop 600ms 100ms backwards;
+}
+
+main, aside {
+  animation: fromBottom 800ms 100ms backwards;
+}
+
+
+@keyframes fromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes fromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
